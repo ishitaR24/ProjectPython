@@ -1,0 +1,66 @@
+#Topic:-Job Application Shortlisting
+'''Develop a program for a company to shortlist candidates based on conditions like minimum age, qualifications, and years of experience.
+ Allow the user to input candidate details, and use conditional statements to determine whether the candidate is shortlisted.
+ Display a summary of shortlisted and rejected candidates.'''
+
+
+
+def get_candidate_details():
+    name = input("Enter the candidate's name: ")
+    age = int(input("Enter the candidate's age: "))
+    qualification = input("Enter the candidate's highest qualification: ")
+    experience = int(input("Enter the candidate's years of experience: "))
+    contact = int(input("Enter candidate's contact details:"))
+    email= input("Enter candidate's email address:")
+    gender=input("Enter candidate's gender(M/F/O): ")
+    
+    return name, age, qualification, experience,contact,email,gender
+
+
+def check_shortlist(age, qualification, experience, min_age, required_qualification, min_experience):
+    if age >= min_age and qualification == required_qualification and experience >= min_experience:
+        return True
+    else:
+        return False
+
+
+def display_summary(shortlisted, rejected):
+    print("\n Shortlisted Candidates are:")
+    for candidate in shortlisted:
+        print(candidate)
+    
+    print("\n Rejected Candidates are:-")
+    for candidate in rejected:
+        print(candidate)
+
+
+def main():
+    
+    min_age = 25
+    required_qualification = "B.Tech"
+    min_experience = 2
+
+
+    shortlisted = []
+    rejected = []
+
+
+    num_candidates = int(input("Enter the number of candidates to evaluate: "))
+
+
+    for _ in range(num_candidates):
+        
+        name, age, qualification, experience, contact, email, gender = get_candidate_details()
+
+        
+        if check_shortlist(age, qualification, experience, min_age, required_qualification, min_experience):
+            shortlisted.append(name)
+        else:
+            rejected.append(name)
+
+    
+    display_summary(shortlisted, rejected)
+
+
+if __name__ == "__main__":
+    main()
